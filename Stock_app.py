@@ -72,7 +72,7 @@ def recomend(symbol):
 #----------------------------------------------------------------------
 # Calculate RSI
 @st.cache_data
-def calculate_rsi(prices, period=50):
+def calculate_rsi(prices, period=15):
     delta = prices.diff()
     gain = delta.where(delta > 0, 0)
     loss = -delta.where(delta < 0, 0)
