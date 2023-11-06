@@ -293,7 +293,7 @@ with tab3:
     st.markdown('''Simply input the specific parameters you want to monitor, navigate to the sidebar, and choose from options such as the **Stock Symbol**,
         **Start** and **End Analysis Periods**, and customize your analysis by incorporating **Moving Average** with varying timeframes and **RSI** with 15 days period.
         ''')
-    st.markdown('''**What is it a Moving Average**''')
+    st.markdown('''**Moving Average Index**''')
     st.markdown('''A moving average (MA) is the simple average **close** price, in this app you will have the opportunity to explore different windows of MA.''')
     st.markdown("""
     Read the following list of the 5 most important reasons to analyze MA:
@@ -303,11 +303,25 @@ with tab3:
     - **Volatility Measurement:** The spread between moving averages offers insights into a stock's volatility, aiding risk assessment and position sizing.
     - **Psychological Impact:** Moving averages are widely followed in the market and can influence trader behavior, making them important for technical analysis and trading strategies.
     """)
+    st.markdown('''**Relative Strength Index (RSI)**''')
+    st.markdown('''is a popular technical indicator used in stock price analysis. It's a simple way to measure the speed and change of price movements, 
+    and it's often displayed as a number between 0 and 100''')
+    st.markdown("""
+    Here are the five most important reasons to use RSI in stock price analysis:
+    - **Overbought and Oversold Signals:** RSI helps identify when a stock may be overbought (RSI above 70) or oversold (RSI below 30), which can indicate potential reversal points.
+    - **Trend Confirmation:** RSI can confirm the strength of an existing trend. A rising RSI in an uptrend or a falling RSI in a downtrend suggests the trend's momentum.
+    - **Divergence Detection:** RSI can reveal potential trend reversals when it diverges from the stock's price. Bullish divergence (higher RSI, lower price) may signal an upcoming uptrend, and bearish divergence (lower RSI, higher price) may suggest a downtrend.
+    - **Potential Buy and Sell Signals:** RSI crossovers of key levels (typically 70 and 30) can generate buy and sell signals, helping traders make informed decisions.
+    - **Risk Management:** RSI assists in setting stop-loss levels and managing risk. It helps traders determine when a stock might be overextended and due for a pullback or correction.
+    
+    In simple terms, RSI is a tool that helps traders and investors gauge the momentum of a stock's price movement, identify potential reversal points, and make decisions
+    about buying, selling, or holding positions.
+    """)
     
     st.markdown('''**Advantages of this model**''')
     st.markdown('''In this app, you'll discover a versatile framework for analyzing stock market prices, powered by real-time datasets. 
         Explore straightforward yet informative descriptive analytics, featuring a concise summary of essential metrics. 
-        You can also enhance your analysis by incorporating additional elements, such as customizable moving averages with various timeframes and comprehensive data set mean calculations.
+        You can also enhance your analysis by incorporating additional elements, such as customizable moving averages with various timeframes or RSI and comprehensive data set mean calculations.
         ''')
         #----------------------------------------------------------------------------------------------
             
