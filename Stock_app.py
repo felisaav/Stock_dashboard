@@ -32,6 +32,7 @@ with st.sidebar.form(key ='Form1'):
         MA_15 = st.checkbox('MA-15',help='moving average 15 last periods')
         MA_5 = st.checkbox('MA-5',help='moving average 5 last periods')
         Mean_ = st.checkbox('Mean',help='mean of selected periods')
+        RSI=st.checkbox('RSI',help='RSI of selected periods')
     
     submit_code = st.form_submit_button(label ="Execute")
 
@@ -67,6 +68,34 @@ def recomend(symbol):
         return pd.DataFrame()  # Return an empty DataFrame if there's no data
     return pd.DataFrame(recom)
 
+#----------------------------------------------------------------------
+# Calculate RSI
+@st.cache_data
+def calculate_rsi(prices, period=14):
+    delta = prices.diff()
+    gain = delta.where(delta > 0, 0)
+    loss = -delta.where(delta < 0, 0)
+
+    avg_gain = gain.ewm(com=period - 1, min_periods=period).mean()
+    avg_loss = loss.ewm(com=period - 1, min_periods=period).mean()
+
+    rs = avg_gain / avg_loss
+    rsi = 100 - (100 / (1 + rs))
+    return rsi
+
+# Generate Trading Signals
+@st.cache_data
+def generate_signals(rsi_values):
+    signals = []
+    for rsi in rsi_values:
+        if rsi > 70:
+            signals.append('SELL') #red triangle down
+        elif rsi < 30:
+            signals.append('BUY') #green triangle up
+        else:
+            signals.append('HOLD')
+    return signals
+#----------------------------------------------------------------------
 
 #main page
 tab1, tab2, tab3 = st.tabs(["General info", "Detailed info", "Read Me"])
@@ -78,6 +107,17 @@ with tab1:
     if submit_code:
         if symbol:
             df=lee(symbol,'1d',init,finish)
+            #-----            
+            # Calculate RSI and generate signals
+            rsi_values = calculate_rsi(df['Close'])
+            df['RSI'] = rsi_values
+            df['Signal'] = generate_signals(rsi_values)
+            df['Symbol'] = np.where(df['Signal'] ='BUY', "triangle-up")
+            df['Symbol'] = np.where(df['Signal'] ='SELL', "triangle-down") # triangle up for + day, triangle down for - day
+            df['Color'] = np.where(df['Symbol']="triangle-up", "green")
+            df['Color'] = np.where(df['Symbol']="triangle-down", "red") # defining green positive change and red for negative daily change
+    
+            #-----
 
             if not df.empty:
         
@@ -111,7 +151,15 @@ with tab1:
                 if Mean_:
                     fig.add_trace(go.Scatter(x=df.index, y=df['Mean'], line=dict(color='gray', width=1, dash='dot'), name='Mean'),
                                   row=1, col=1)
-                    
+                if RSI:
+                    fig.add_trace(go.Scatter(x=df.index, 
+                                             y=df['Signal'], 
+                                             mode='markers', 
+                                             name='Markers', 
+                                             marker=go.scatter.Marker(size=8,
+                                                      symbol=df['Symbol'],
+                                                      color=df['Color'])),
+                                  row=1, col=1)
                 fig.update_layout(
                         title=symbol,
                         xaxis_rangeslider_visible=False,
