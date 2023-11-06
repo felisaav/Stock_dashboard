@@ -113,7 +113,7 @@ with tab1:
             rsi_values = calculate_rsi(df['Close'])
             df['RSI'] = rsi_values
             df['Signal'] = generate_signals(rsi_values)
-            df['Symbol'] = np.where(df['Signal'] == 'BUY', "triangle-up", np.where(df['Signal'] == 'SELL', "triangle-down", None))
+            df['Symbol'] = np.where(df['Signal'] == 'BUY', "triangle-up", np.where(df['Signal'] == 'SELL', "triangle-down", "circle"))
             #df['Symbol'] = np.where(df['Signal'] =='BUY', "triangle-up")
             #df['Symbol'] = np.where(df['Signal'] =='SELL', "triangle-down") # triangle up for + day, triangle down for - day
             df['Color'] = np.where(df['Signal'] == 'BUY', "green", np.where(df['Signal'] == 'SELL', "red", "gray"))
