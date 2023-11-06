@@ -90,9 +90,9 @@ def generate_signals(rsi_values):
     signals = []
     for rsi in rsi_values:
         if rsi > 70:
-            signals.append('SELL') #red triangle down
+            signals.append('SELL') #ORANGE triangle down
         elif rsi < 30:
-            signals.append('BUY') #green triangle up
+            signals.append('BUY') #BLUE triangle up
         else:
             signals.append('HOLD')
     return signals
@@ -151,7 +151,7 @@ with tab1:
                                   row=1, col=1)
                 if RSI:
                     fig.add_trace(go.Scatter(x=df.index, 
-                                             y=df['Low'],#df['Signal'], 
+                                             y=df['Low'],
                                              mode='markers', 
                                              name='Markers', 
                                              marker=go.scatter.Marker(
@@ -291,8 +291,19 @@ with tab3:
         stock market information.''')
     st.markdown('''**How to use it**''')
     st.markdown('''Simply input the specific parameters you want to monitor, navigate to the sidebar, and choose from options such as the **Stock Symbol**,
-        **Start** and **End Analysis Periods**, and customize your analysis by incorporating **Moving Averages** with varying timeframes.
+        **Start** and **End Analysis Periods**, and customize your analysis by incorporating **Moving Average** with varying timeframes and **RSI** with 15 days period.
         ''')
+    st.markdown('''**What is it a Moving Average**''')
+    st.markdown('''A moving average (MA) is the simple average **close** price, in this app you will have the opportunity to explore different windows of MA.''')
+    st.markdown("""
+    Read the following list of the 5 most important reasons to analyze MA:
+    - **Trend Identification:** Moving averages of various timeframes help identify both short-term and long-term trends in a stock's price movement.
+    - **Signal Generation:** Crossovers between different moving averages can generate buy and sell signals, providing valuable trading opportunities.
+    - **Support and Resistance Levels:** Moving averages act as dynamic support and resistance levels, influencing price behavior.
+    - **Volatility Measurement:** The spread between moving averages offers insights into a stock's volatility, aiding risk assessment and position sizing.
+    - **Psychological Impact:** Moving averages are widely followed in the market and can influence trader behavior, making them important for technical analysis and trading strategies.
+    """)
+    
     st.markdown('''**Advantages of this model**''')
     st.markdown('''In this app, you'll discover a versatile framework for analyzing stock market prices, powered by real-time datasets. 
         Explore straightforward yet informative descriptive analytics, featuring a concise summary of essential metrics. 
