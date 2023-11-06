@@ -116,7 +116,7 @@ with tab1:
             df['Symbol'] = np.where(df['Signal'] == 'BUY', "triangle-up", np.where(df['Signal'] == 'SELL', "triangle-down", "circle"))
             #df['Symbol'] = np.where(df['Signal'] =='BUY', "triangle-up")
             #df['Symbol'] = np.where(df['Signal'] =='SELL', "triangle-down") # triangle up for + day, triangle down for - day
-            df['Color'] = np.where(df['Signal'] == 'BUY', "green", np.where(df['Signal'] == 'SELL', "red", "gray"))
+            df['Color'] = np.where(df['Signal'] == 'BUY', "green", np.where(df['Signal'] == 'SELL', "red", "rgba(0, 0, 0, 0)"))
             #df['Color'] = np.where(df['Symbol']=="triangle-up", "green")
             #df['Color'] = np.where(df['Symbol']=="triangle-down", "red") # defining green positive change and red for negative daily change
     
