@@ -33,7 +33,7 @@ with st.sidebar.form(key ='Form1'):
         MA_15 = st.checkbox('MA-15',help='moving average 15 last periods')
         MA_5 = st.checkbox('MA-5',help='moving average 5 last periods')
         Mean_ = st.checkbox('Mean',help='mean of selected periods')
-        RSI=st.checkbox('RSI',help='RSI of selected periods')
+        RSI=st.checkbox('RSI',help='RSI of 15 periods')
     
     submit_code = st.form_submit_button(label ="Execute")
 
@@ -72,7 +72,7 @@ def recomend(symbol):
 #----------------------------------------------------------------------
 # Calculate RSI
 @st.cache_data
-def calculate_rsi(prices, period=14):
+def calculate_rsi(prices, period=15):
     delta = prices.diff()
     gain = delta.where(delta > 0, 0)
     loss = -delta.where(delta < 0, 0)
