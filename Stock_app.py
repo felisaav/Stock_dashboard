@@ -224,6 +224,8 @@ with tab1:
                 #-------------Part 2
                     st.subheader("Historical price evolution")
                     st.plotly_chart(fig,use_container_width=True)
+                    if RSI:
+                        st.write("note: blue triangle-up: Buy signal / orange triangle-down: Sell signal")
                 #-------------Part 2.1
                     st.subheader("News related with the company")
                     if not recom.empty:
