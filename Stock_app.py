@@ -114,7 +114,7 @@ with tab1:
             df['RSI'] = rsi_values
             df['Signal'] = generate_signals(rsi_values)
             df['Symbol'] = np.where(df['Signal'] == 'BUY', "triangle-up", np.where(df['Signal'] == 'SELL', "triangle-down", "circle"))
-            df['Color'] = np.where(df['Signal'] == 'BUY', "green", np.where(df['Signal'] == 'SELL', "red", "rgba(0, 0, 0, 0)"))
+            df['Color'] = np.where(df['Signal'] == 'BUY', "blue", np.where(df['Signal'] == 'SELL', "orange", "rgba(0, 0, 0, 0)"))
             #-----
 
             if not df.empty:
@@ -155,7 +155,7 @@ with tab1:
                                              mode='markers', 
                                              name='Markers', 
                                              marker=go.scatter.Marker(
-                                                 size=8,
+                                                 size=12,
                                                  symbol=df['Symbol'],
                                                  color=df['Color'])),
                                   row=1, col=1)
